@@ -2,7 +2,7 @@
 
 Plataforma web SLA para o cliente acompanhar a disponibilidade em tempo real e gerar
 relatórios mensais (PDF/DOCX) sem depender do NOC. Integra-se ao Zabbix existente
-(`45.236.8.20`) e reproduz fielmente o modelo do relatório atual. Agora mantém
+(`198.51.100.20`) e reproduz fielmente o modelo do relatório atual. Agora mantém
 um banco local SQLite (`portal.db`) com cache de clientes e dispositivos para seleção rápida.
 
 **Status:** MVP funcional · Backend (FastAPI) + Frontend (React) · Docker-ready
@@ -44,7 +44,7 @@ uvicorn main:app --host 0.0.0.0 --port 8080
 ## 🔧 Configuração Inicial
 
 ### 1. Gere um Token de API no Zabbix
-No seu Zabbix (`45.236.8.20`):
+No seu Zabbix (`198.51.100.20`):
 ```
 Usuários > Tokens de API > Criar token
 ```
@@ -56,7 +56,7 @@ Usuários > Tokens de API > Criar token
 ### 2. Configure o Backend
 Edite `.env`:
 ```bash
-ZBX_URL=http://45.236.8.20/zabbix/api_jsonrpc.php
+ZBX_URL=http://198.51.100.20/zabbix/api_jsonrpc.php
 ZBX_TOKEN=seu_token_gerado_acima
 ZBX_USER=                    # Só se exportar imagens de gráfico
 ZBX_PASSWORD=                # Deixe vazio por enquanto
@@ -150,7 +150,7 @@ No portal, aberto em `http://localhost:8080/`:
                  ▼
         ┌────────────────────┐
         │   Zabbix (NOC)     │
-        │ 45.236.8.20        │
+        │ 198.51.100.20      │
         │ • ICMP monitoring  │
         │ • Event history    │
         └────────────────────┘
@@ -179,22 +179,18 @@ No portal, aberto em `http://localhost:8080/`:
 
 ## 📈 Dados de Exemplo (Março/2026)
 
-**SLA médio consolidado: 87,12%** — apenas 1 das 10 unidades cumpre ≥99%.
+**SLA médio consolidado: 96,41%** — 3 das 6 unidades cumprem ≥99%.
 
 | Unidade | SLA | Perda | Status |
 |---|---|---|---|
-| Hospital Delphina Aziz | 99,03% | 0,03% | ✓ Dentro do SLA |
-| Av. Mário Ypiranga | 97,23% | 2,36% | ⚠ Atenção |
-| Posto Careiro (BR-319 km 13) | 96,53% | 2,58% | ⚠ Atenção |
-| CICC | 96,53% | 0,21% | ⚠ Atenção |
-| Ceasa (BR-319 km 0) | 95,56% | 1,14% | ⚠ Atenção |
-| UOP3302 (BR-174 km 1010) | 93,48% | 1,80% | ⚠ Atenção |
-| Pista Honda (BR-174 km 932) | 88,35% | 2,39% | ⚠ Atenção |
-| Escola Agrícola (BR-174 km 905) | 87,38% | 7,14% | ❌ Crítico |
-| Manaus I / UOp3301 (km 927) | 81,83% | 11,89% | ❌ Crítico |
-| **Fazenda Vieira (BR-174 km 962)** | **35,23%** | **61,81%** | **❌ Crítico** |
+| Unidade Alfa | 99,82% | 0,02% | ✓ Dentro do SLA |
+| Unidade Beta | 99,41% | 0,08% | ✓ Dentro do SLA |
+| Unidade Gama | 99,07% | 0,15% | ✓ Dentro do SLA |
+| Unidade Delta | 97,86% | 1,12% | ⚠ Atenção |
+| Unidade Épsilon | 92,34% | 3,48% | ⚠ Atenção |
+| **Unidade Zeta** | **90,01%** | **5,77%** | **⚠ Atenção** |
 
-**Nota:** Fazenda Vieira está em colapso — 61,8% de perda de pacotes indica enlace quebrado.
+**Nota:** Os nomes e indicadores acima são fictícios e servem apenas para ilustrar o layout do portal e dos relatórios.
 
 ---
 
@@ -231,7 +227,7 @@ No portal, aberto em `http://localhost:8080/`:
 ## 🛠️ Troubleshooting
 
 ### "Conectando ao Zabbix…" demora muito
-- Verifique conectividade: `curl http://45.236.8.20/zabbix/api_jsonrpc.php`
+- Verifique conectividade: `curl http://198.51.100.20/zabbix/api_jsonrpc.php`
 - Token expirou? Gere novo no Zabbix
 - Host groups permissão? Usuário tem acesso aos hosts PRF?
 
