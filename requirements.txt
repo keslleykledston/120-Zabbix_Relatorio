@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+httpx
+weasyprint
+python-docx
+python-dotenv
+matplotlib

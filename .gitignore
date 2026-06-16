@@ -1,0 +1,46 @@
+# Ambiente virtual
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.egg-info/
+.Python
+
+# Configuração (nunca comitar)
+.env
+config.json
+portal.db
+
+# Arquivos temporários
+*.tmp
+*.log
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Relatórios gerados (temporários)
+*.pdf
+*.docx
+
+# Node (se adicionar frontend tooling)
+node_modules/
+dist/
+build/
+
+# Temp do SO
+.cache/
+.tmp/
+/temp
+
+# Cache de pip
+*.egg
+dist/
+build/

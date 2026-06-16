@@ -1,0 +1,104 @@
+═══════════════════════════════════════════════════════════════════════════════
+  PORTAL DE DISPONIBILIDADE — PRF/AM (K3G Solutions) · MVP
+═══════════════════════════════════════════════════════════════════════════════
+
+✓ ENTREGÁVEIS
+
+Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilidade:
+
+  [FRONTEND]
+  ✓ portal-prf-sla.jsx — Dashboard React com abas Painel + Configurações
+    • Seletor dinâmico de mês/ano
+    • Painel com KPIs, mapa de corredores, tabela de unidades
+    • Aba Configurações com teste de conexão Zabbix
+
+  [BACKEND - FastAPI]
+  ✓ main.py — API com 8 endpoints (config, test, units, monthly, pdf, docx, healthz)
+  ✓ zabbix_client.py — Cliente JSON-RPC (history, events, hosts)
+  ✓ sla.py — Motor de cálculo SLA (D = (To-Ti)/To)
+  ✓ report_generator.py — Gerador PDF (WeasyPrint)
+  ✓ docx_generator.py — Gerador DOCX (python-docx)
+  ✓ config.py — Persistência de configuração (Zabbix URL/token)
+
+  [INSTALAÇÃO]
+  ✓ install.sh — Script rápido para Linux/macOS
+  ✓ install.bat — Script rápido para Windows
+  ✓ requirements.txt — Dependências Python
+  ✓ .env.example — Template de variáveis de ambiente
+
+  [DOCUMENTAÇÃO]
+  ✓ README.md — Documentação completa (arquitetura, uso, roadmap)
+  ✓ INSTRUÇÕES.md — Guia passo a passo para iniciantes
+  ✓ RESUMO.txt — Este arquivo
+
+  [EXEMPLOS]
+  ✓ Relatorio_Disponibilidade_PRF-AM_Marco-2026.pdf — PDF gerado (11 páginas)
+  ✓ Relatorio_Disponibilidade_PRF-AM_Marco-2026.docx — DOCX gerado (editável)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+⚡ INÍCIO RÁPIDO (3 passos)
+
+  1. Instale dependências:
+     
+     Linux/macOS:    chmod +x install.sh && ./install.sh
+     Windows:        install.bat
+
+  2. Configure o Zabbix:
+     
+     Edite .env com:
+       ZBX_URL=http://45.236.8.20/zabbix/api_jsonrpc.php
+       ZBX_TOKEN=seu_token_aqui (gere em Zabbix > Usuários > Tokens de API)
+
+  3. Inicie o backend:
+     
+     source venv/bin/activate  (ou venv\Scripts\activate.bat no Windows)
+     uvicorn main:app --host 0.0.0.0 --port 8080
+
+  4. Abra o portal:
+     
+     http://localhost:8080 (ou serve portal-prf-sla.jsx em um HTTP server)
+     Configure a conexão Zabbix na aba "Configurações"
+
+═══════════════════════════════════════════════════════════════════════════════
+
+🎯 O QUE FOI IMPLEMENTADO
+
+  ✓ Portal web com seletor de mês/ano
+  ✓ Integração em tempo real com Zabbix (JSON-RPC)
+  ✓ Cálculo fiel de SLA (D = (To-Ti)/To)
+  ✓ Exportação em PDF (relatório profissional com capa + metodologia)
+  ✓ Exportação em DOCX (Word editável)
+  ✓ Aba de Configurações com teste de conexão Zabbix
+  ✓ Histórico de incidentes (via event.get do Zabbix)
+  ✓ Mapa de corredores (BR-174, BR-319) com unidades georreferenciadas
+  ✓ Modo demonstração (dados de Março/2026 sem backend)
+  ✓ Scripts de instalação automática (Linux e Windows)
+
+═══════════════════════════════════════════════════════════════════════════════
+
+📊 DADOS DE EXEMPLO (Março/2026)
+
+  SLA médio consolidado:  87,12%
+  Unidades monitoradas:   10 (6 unidades urbanas + 4 postos rodoviários)
+  Melhor SLA:             Hospital Delphina Aziz (99,03%)
+  Pior SLA:               Fazenda Vieira BR-174 km 962 (35,23%)
+  
+  Relatórios gerados como exemplo (PDF e DOCX) mostram o modelo de saída.
+
+═══════════════════════════════════════════════════════════════════════════════
+
+❓ DÚVIDAS?
+
+  Leia:  INSTRUÇÕES.md (passo a passo)
+         README.md (documentação completa)
+  
+  Suporte:  K3G Solutions · NOC 24×7
+            Email: suporte@k3g.com.br
+            Tel: (34) 3314-8894
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Desenvolvido com ❤ para K3G Solutions LTDA
+Portal de Disponibilidade — MVP (v0.3.0)
+Junho de 2026
