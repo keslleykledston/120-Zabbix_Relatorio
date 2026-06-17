@@ -149,14 +149,14 @@ def test_connection(body: ZbxConfigIn):
     try:
         version = zc.apiinfo_version()           # não exige auth
         zc.login()                               # valida user/senha (se for o caso)
-        hosts = zc.hosts_by_name("PRF")          # valida token + conta hosts
+        hosts = zc.hosts_by_name("CLIENTE")      # valida token + conta hosts
         ms = round((time.time() - t0) * 1000)
         return {
             "ok": True,
             "version": version,
             "hosts_prf": len(hosts),
             "latency_ms": ms,
-            "message": f"Conectado ao Zabbix {version} — {len(hosts)} host(s) PRF encontrados.",
+            "message": f"Conectado ao Zabbix {version} — {len(hosts)} host(s) encontrados.",
         }
     except Exception as e:
         return {"ok": False, "message": f"Falha na conexão: {e}"}

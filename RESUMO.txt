@@ -1,5 +1,5 @@
 ═══════════════════════════════════════════════════════════════════════════════
-  PORTAL DE DISPONIBILIDADE — PRF/AM (K3G Solutions) · MVP
+  PORTAL DE DISPONIBILIDADE — CLIENTE EXEMPLO (K3G Solutions) · MVP
 ═══════════════════════════════════════════════════════════════════════════════
 
 ✓ ENTREGÁVEIS
@@ -9,7 +9,7 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
   [FRONTEND]
   ✓ portal-prf-sla.jsx — Dashboard React com abas Painel + Configurações
     • Seletor dinâmico de mês/ano
-    • Painel com KPIs, mapa de corredores, tabela de unidades
+    • Painel com KPIs, seleção de clientes e tabela de unidades
     • Aba Configurações com teste de conexão Zabbix
 
   [BACKEND - FastAPI]
@@ -47,7 +47,7 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
   2. Configure o Zabbix:
      
      Edite .env com:
-       ZBX_URL=http://45.236.8.20/zabbix/api_jsonrpc.php
+       ZBX_URL=http://198.51.100.20/zabbix/api_jsonrpc.php
        ZBX_TOKEN=seu_token_aqui (gere em Zabbix > Usuários > Tokens de API)
 
   3. Inicie o backend:
@@ -57,7 +57,7 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
 
   4. Abra o portal:
      
-     http://localhost:8080 (ou serve portal-prf-sla.jsx em um HTTP server)
+     http://localhost:8080
      Configure a conexão Zabbix na aba "Configurações"
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -71,7 +71,7 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
   ✓ Exportação em DOCX (Word editável)
   ✓ Aba de Configurações com teste de conexão Zabbix
   ✓ Histórico de incidentes (via event.get do Zabbix)
-  ✓ Mapa de corredores (BR-174, BR-319) com unidades georreferenciadas
+  ✓ Seleção de 1 ou mais clientes com cache local em SQLite
   ✓ Modo demonstração (dados de Março/2026 sem backend)
   ✓ Scripts de instalação automática (Linux e Windows)
 
@@ -79,10 +79,10 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
 
 📊 DADOS DE EXEMPLO (Março/2026)
 
-  SLA médio consolidado:  87,12%
-  Unidades monitoradas:   10 (6 unidades urbanas + 4 postos rodoviários)
-  Melhor SLA:             Hospital Delphina Aziz (99,03%)
-  Pior SLA:               Fazenda Vieira BR-174 km 962 (35,23%)
+  SLA médio consolidado:  96,41%
+  Unidades monitoradas:   6
+  Melhor SLA:             Unidade Alfa (99,82%)
+  Pior SLA:               Unidade Zeta (90,01%)
   
   Relatórios gerados como exemplo (PDF e DOCX) mostram o modelo de saída.
 
@@ -93,9 +93,7 @@ Este pacote contém tudo o que você precisa para rodar o Portal de Disponibilid
   Leia:  INSTRUÇÕES.md (passo a passo)
          README.md (documentação completa)
   
-  Suporte:  K3G Solutions · NOC 24×7
-            Email: suporte@k3g.com.br
-            Tel: (34) 3314-8894
+  Suporte:  Consulte o mantenedor do ambiente
 
 ═══════════════════════════════════════════════════════════════════════════════
 

@@ -5,9 +5,8 @@ import { createRoot } from "react-dom/client";
    O token do Zabbix fica NO BACKEND (.env / config.json), nunca no front. */
 
 /* ============================================================
-   PORTAL DE DISPONIBILIDADE — PRF/AM  (MVP K3G Solutions)
-   Contrato 07/2025 · PE 9001/2025 — Link Dedicado
-   Dados reais: Março/2026 (44.640 min). Fonte: Zabbix (ICMP).
+   PORTAL DE DISPONIBILIDADE — CLIENTE EXEMPLO (MVP K3G Solutions)
+   Dados fictícios de demonstração: Março/2026 (44.640 min). Fonte: Zabbix (ICMP).
    Série diária ilustrativa derivada da média mensal —
    em produção vem de Zabbix trends.get.
    ============================================================ */
@@ -52,18 +51,14 @@ const minToHuman = (m) => {
 };
 const fmtInt = (n) => n.toLocaleString("pt-BR");
 
-// ---- DADOS REAIS (Março/2026) -------------------------------
+// ---- DADOS FICTÍCIOS (Março/2026) ----------------------------
 const UNITS = [
-  { id: "delphina", cliente: "MPAM", nome: "Hospital Delphina Aziz", local: "Av. Torquato Tapajós, 9250 — Manaus/AM", corredor: "Manaus", km: null, ip: "167.249.180.74", d: 0.9903, lat: 4.02, loss: 0.03467, down: 433, inc: "Sem registro" },
-  { id: "ypiranga", cliente: "MPAM", nome: "Av. Mário Ypiranga (DNIT)", local: "Av. Mário Ypiranga, 2479 — Parque 10, Manaus/AM", corredor: "Manaus", km: null, ip: "100.65.3.201", d: 0.9723, lat: 3.99, loss: 2.355, down: 1237, inc: "—" },
-  { id: "careiro", cliente: "MPAM", nome: "Posto Careiro — UOP3304", local: "BR-319, km 13 — Careiro da Várzea/AM", corredor: "BR-319", km: 13, ip: "167.250.203.20", d: 0.9653, lat: 4.31, loss: 2.5798, down: 1549, inc: "—" },
-  { id: "cicc", cliente: "MPAM", nome: "CICC — Comando e Controle", local: "Av. André Araújo, 1422 — Petrópolis, Manaus/AM", corredor: "Manaus", km: null, ip: "167.249.180.106", d: 0.9653, lat: 3.1, loss: 0.2073, down: 1549, inc: "—" },
-  { id: "ceasa", cliente: "MPAM", nome: "Posto Manaus II — UOP3303 (Ceasa)", local: "BR-319, km 0 — Manaus/AM", corredor: "BR-319", km: 0, ip: "167.250.203.22", d: 0.9556, lat: 4.83, loss: 1.1435, down: 1982, inc: "—" },
-  { id: "figueiredo", cliente: "MPAM", nome: "UOP3302", local: "BR-174, km 1010 — Presidente Figueiredo/AM", corredor: "BR-174", km: 1010, ip: "10.123.122.76", d: 0.9348, lat: 4.47, loss: 1.8031, down: 2910, inc: "—" },
-  { id: "honda", cliente: "MPAM", nome: "Pista de Teste Moto Honda", local: "BR-174, km 932 — Manaus/AM", corredor: "BR-174", km: 932, ip: "10.123.122.77", d: 0.8835, lat: 5.75, loss: 2.393, down: 5200, inc: "—" },
-  { id: "agricola", cliente: "MPAM", nome: "Escola Agrícola", local: "BR-174, km 905 — Manaus/AM", corredor: "BR-174", km: 905, ip: "10.123.122.78", d: 0.8738, lat: 5.81, loss: 7.1359, down: 5634, inc: "—" },
-  { id: "uop3301", cliente: "MPAM", nome: "Posto Manaus I — UOp3301", local: "BR-174, km 927 — Manaus/AM", corredor: "BR-174", km: 927, ip: "10.123.122.75", d: 0.8183, lat: 5.25, loss: 11.8912, down: 8110, inc: "—" },
-  { id: "vieira", cliente: "MPAM", nome: "Fazenda Vieira", local: "BR-174, km 962 — Manaus/AM", corredor: "BR-174", km: 962, ip: "10.123.122.80", d: 0.3523, lat: 1.81, loss: 61.8131, down: 28913, inc: "Falha recorrente" },
+  { id: "alfa", cliente: "Cliente Exemplo", nome: "Unidade Alfa", local: "Av. Exemplo, 100 — Cidade Exemplo/UF", corredor: "Urbano", km: null, ip: "192.0.2.10", d: 0.9982, lat: 4.02, loss: 0.02, down: 80, inc: "Sem registro" },
+  { id: "beta", cliente: "Cliente Exemplo", nome: "Unidade Beta", local: "Rua Modelo, 245 — Cidade Exemplo/UF", corredor: "Urbano", km: null, ip: "192.0.2.11", d: 0.9941, lat: 3.99, loss: 0.08, down: 263, inc: "—" },
+  { id: "gama", cliente: "Cliente Exemplo", nome: "Unidade Gama", local: "Setor Central, 55 — Cidade Exemplo/UF", corredor: "Urbano", km: null, ip: "192.0.2.12", d: 0.9907, lat: 4.31, loss: 0.15, down: 415, inc: "—" },
+  { id: "delta", cliente: "Cliente Exemplo", nome: "Unidade Delta", local: "Rod. Exemplo, km 12 — Cidade Exemplo/UF", corredor: "Externo", km: 12, ip: "192.0.2.13", d: 0.9786, lat: 4.83, loss: 1.12, down: 955, inc: "—" },
+  { id: "epsilon", cliente: "Cliente Exemplo", nome: "Unidade Épsilon", local: "Rod. Exemplo, km 48 — Cidade Exemplo/UF", corredor: "Externo", km: 48, ip: "192.0.2.14", d: 0.9234, lat: 5.25, loss: 3.48, down: 3419, inc: "—" },
+  { id: "zeta", cliente: "Cliente Exemplo", nome: "Unidade Zeta", local: "Polo Remoto, km 96 — Cidade Exemplo/UF", corredor: "Externo", km: 96, ip: "192.0.2.15", d: 0.9001, lat: 5.81, loss: 5.77, down: 4459, inc: "Falha recorrente" },
 ];
 
 // Série diária determinística com média = SLA mensal (ilustrativa)
@@ -300,7 +295,7 @@ function App() {
               </p>
               <span style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 8, fontSize: 12, fontWeight: 600, padding: "3px 10px", borderRadius: 20, background: (live ? C.ok : C.warn) + "18", color: live ? C.ok : C.warn }}>
                 <span style={{ width: 7, height: 7, borderRadius: "50%", background: live ? C.ok : C.warn }} />
-                {loading ? "Conectando ao Zabbix…" : live ? `Conectado ao Zabbix — ${periodoLabel}` : "Modo demonstração — dados de Março/2026"}
+                {loading ? "Conectando ao Zabbix…" : live ? `Conectado ao Zabbix — ${periodoLabel}` : "Modo demonstração — dados fictícios de Março/2026"}
               </span>
             </div>
             {tab === "painel" && (
@@ -394,7 +389,7 @@ function App() {
         )}
         {!live && month !== 3 && (
           <div className="card" style={{ borderColor: C.warn, background: "#FEFAF2", padding: "11px 16px", marginBottom: 18, fontSize: 13, color: C.inkSoft }}>
-            Sem backend conectado, o modo demonstração só possui dados de <b>Março/2026</b>. Configure o Zabbix na aba <b>Configurações</b> para consultar {periodoLabel}.
+            Sem backend conectado, o modo demonstração só possui dados <b>fictícios</b> de <b>Março/2026</b>. Configure o Zabbix na aba <b>Configurações</b> para consultar {periodoLabel}.
           </div>
         )}
 
@@ -462,7 +457,7 @@ function App() {
         </section>
 
         <footer style={{ color: C.inkFaint, fontSize: 12, textAlign: "center", marginTop: 8 }} className="mono">
-          K3G Solutions · NOC 24×7 · Fonte: Zabbix (45.236.8.20) · Cálculo SLA: D = (To − Ti) / To
+          K3G Solutions · NOC 24×7 · Fonte: Zabbix (ambiente configurado) · Cálculo SLA: D = (To − Ti) / To
         </footer>
         </>
         )}

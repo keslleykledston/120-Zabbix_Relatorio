@@ -253,27 +253,23 @@ def build_pdf(report: dict, out_path: str) -> str:
     return out_path
 
 
-# ----- dados de exemplo (Março/2026 reais) p/ demonstração offline -----
+# ----- dados fictícios de exemplo (Março/2026) p/ demonstração offline -----
 def sample_report() -> dict:
     base = [
-        ("Hospital Delphina Aziz", "Av. Torquato Tapajós, 9250 — Manaus/AM", "167.249.180.74", 0.9903, 4.02, 0.03467, 433, "Sem registro"),
-        ("Av. Mário Ypiranga (DNIT)", "Av. Mário Ypiranga, 2479 — Parque 10, Manaus/AM", "100.65.3.201", 0.9723, 3.99, 2.355, 1237, None),
-        ("Posto Careiro — UOP3304", "BR-319, km 13 — Careiro da Várzea/AM", "167.250.203.20", 0.9653, 4.31, 2.5798, 1549, None),
-        ("CICC — Comando e Controle", "Av. André Araújo, 1422 — Petrópolis, Manaus/AM", "167.249.180.106", 0.9653, 3.1, 0.2073, 1549, None),
-        ("Posto Manaus II — UOP3303 (Ceasa)", "BR-319, km 0 — Manaus/AM", "167.250.203.22", 0.9556, 4.83, 1.1435, 1982, None),
-        ("UOP3302", "BR-174, km 1010 — Presidente Figueiredo/AM", "10.123.122.76", 0.9348, 4.47, 1.8031, 2910, None),
-        ("Pista de Teste Moto Honda", "BR-174, km 932 — Manaus/AM", "10.123.122.77", 0.8835, 5.75, 2.393, 5200, None),
-        ("Escola Agrícola", "BR-174, km 905 — Manaus/AM", "10.123.122.78", 0.8738, 5.81, 7.1359, 5634, None),
-        ("Posto Manaus I — UOp3301", "BR-174, km 927 — Manaus/AM", "10.123.122.75", 0.8183, 5.25, 11.8912, 8110, None),
-        ("Fazenda Vieira", "BR-174, km 962 — Manaus/AM", "10.123.122.80", 0.3523, 1.81, 61.8131, 28913, None),
+        ("Unidade Alfa", "Av. Exemplo, 100 — Cidade Exemplo/UF", "192.0.2.10", 0.9982, 4.02, 0.02, 80, "Sem registro"),
+        ("Unidade Beta", "Rua Modelo, 245 — Cidade Exemplo/UF", "192.0.2.11", 0.9941, 3.99, 0.08, 263, None),
+        ("Unidade Gama", "Setor Central, 55 — Cidade Exemplo/UF", "192.0.2.12", 0.9907, 4.31, 0.15, 415, None),
+        ("Unidade Delta", "Rod. Exemplo, km 12 — Cidade Exemplo/UF", "192.0.2.13", 0.9786, 4.83, 1.12, 955, None),
+        ("Unidade Épsilon", "Rod. Exemplo, km 48 — Cidade Exemplo/UF", "192.0.2.14", 0.9234, 5.25, 3.48, 3419, None),
+        ("Unidade Zeta", "Polo Remoto, km 96 — Cidade Exemplo/UF", "192.0.2.15", 0.9001, 5.81, 5.77, 4459, None),
     ]
     total = 44640
     units = []
-    # incidentes de exemplo só p/ ilustrar o layout (produção: event.get)
+    # incidentes fictícios só p/ ilustrar o layout (produção: event.get)
     demo_inc = {
-        "Posto Manaus I — UOp3301": [
+        "Unidade Zeta": [
             {"inicio": "27-03 13:36", "fim": "27-03 13:37", "problema": "Sem resposta de ICMP", "duracao": "1min"},
-            {"inicio": "06-03 08:12", "fim": "09-03 10:56", "problema": "Sem resposta de ICMP", "duracao": "3d 2h 44min"},
+            {"inicio": "06-03 08:12", "fim": "09-03 10:56", "problema": "Perda de comunicação intermitente", "duracao": "3d 2h 44min"},
         ],
     }
     for nome, local, ip, d, lat, loss, down, inc in base:

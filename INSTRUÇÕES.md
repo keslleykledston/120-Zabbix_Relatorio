@@ -32,17 +32,17 @@ O instalador irá:
 
 ## Passo 3: Configurar o Zabbix
 
-### 3.1 Gerar Token no Zabbix (`45.236.8.20`)
+### 3.1 Gerar Token no Zabbix (`198.51.100.20`)
 
-1. Abra o navegador: `http://45.236.8.20`
+1. Abra o navegador: `http://198.51.100.20`
 2. Faça login com sua conta
 3. Vá para **Usuários** (menu superior)
 4. Clique em **Tokens de API**
 5. Clique em **Criar token**
 6. Preencha:
    - **Nome:** "K3G Portal" (ou seu nome)
-   - **Usuário:** Selecione um usuário com permissão de leitura nos hosts PRF
-   - **Host groups:** Marque o grupo que contém os hosts PRF/AM
+   - **Usuário:** Selecione um usuário com permissão de leitura nos hosts do cliente
+   - **Host groups:** Marque o grupo que contém os hosts do cliente
 7. Clique em **Criar**
 8. **Copie o token** exibido (é uma string longa de letras/números)
 
@@ -57,7 +57,7 @@ notepad .env     # Windows
 
 E edite:
 ```env
-ZBX_URL=http://45.236.8.20/zabbix/api_jsonrpc.php
+ZBX_URL=http://198.51.100.20/zabbix/api_jsonrpc.php
 ZBX_TOKEN=COLE_SEU_TOKEN_AQUI
 ZBX_USER=
 ZBX_PASSWORD=
@@ -67,7 +67,7 @@ CORS_ORIGINS=*
 
 **Exemplo:**
 ```env
-ZBX_URL=http://45.236.8.20/zabbix/api_jsonrpc.php
+ZBX_URL=http://198.51.100.20/zabbix/api_jsonrpc.php
 ZBX_TOKEN=COLE_SEU_TOKEN_AQUI
 ZBX_USER=
 ZBX_PASSWORD=
@@ -114,14 +114,14 @@ O FastAPI agora serve a dashboard diretamente. Não precisa abrir `portal-prf-sl
 No portal, abra a aba **Configurações**:
 
 1. **Endereço do backend:** `http://localhost:8080`
-2. **URL da API Zabbix:** `http://45.236.8.20/zabbix/api_jsonrpc.php`
+2. **URL da API Zabbix:** `http://198.51.100.20/zabbix/api_jsonrpc.php`
 3. **Token de API:** Cole o token gerado no Passo 3
 4. Clique em **Testar conexão**
 
 Se OK (verde):
 ```
 ✓ Conectado ao Zabbix 6.0
-✓ 10 host(s) PRF encontrados
+✓ 10 host(s) do cliente encontrados
 ✓ latência: 245 ms
 ```
 
@@ -152,7 +152,7 @@ R: Significa que o backend não está conectado. Verifique se está rodando (`uv
 R: Verifique:
 - Backend está rodando? `curl http://localhost:8080/healthz`
 - Token é válido? Gere novo no Zabbix
-- Hosts PRF existem? Verifique em Zabbix > Hosts > Filtro "PRF"
+- Hosts do cliente existem? Verifique em Zabbix > Hosts > filtro do grupo correspondente
 
 **P: Posso agendar a exportação do relatório?**  
 R: Em breve (roadmap). Por enquanto, use a aba Painel para gerar manualmente.
@@ -168,7 +168,7 @@ Após confirmar que tudo funciona:
 1. Leia `README.md` para entender a arquitetura completa
 2. Explore os dados em diferentes períodos
 3. Teste a exportação em PDF e DOCX
-4. Compartilhe o portal com outras pessoas da PRF
+4. Compartilhe o portal com outras pessoas do cliente
 
 ---
 
